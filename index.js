@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import connectDB from './src/config/db.js';
 import lessonRoutes from './src/routes/lessons.js';
 import orderRoutes from './src/routes/orders.js';
+import {logger} from './src/middleware/logger.js';
 
 const app = Express();
 app.use(Express.json());
@@ -12,6 +13,9 @@ const port = process.env.PORT || 3000;
 
 // Connect to MongoDB
 connectDB();
+
+// Middleware
+app.use(logger);
 
 // Routes
 app.use('/api/lessons', lessonRoutes);
