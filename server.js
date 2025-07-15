@@ -17,13 +17,15 @@ connectDB();
 
 // Middleware
 app.use(logger);
-app.use(notFound);
 
 // Routes
 app.use('/api/lessons', lessonRoutes);
 app.use('/api/orders', orderRoutes);
-
 app.get('/', (req, res) => res.send('Hello World!'));
+
+// Not Found Middleware
+app.use(notFound);
+
 // Start the express server on the relevant port
 app.listen(port, () => {
   console.log(`server is running on ${port}`);
