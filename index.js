@@ -4,6 +4,7 @@ import connectDB from './src/config/db.js';
 import lessonRoutes from './src/routes/lessons.js';
 import orderRoutes from './src/routes/orders.js';
 import {logger} from './src/middleware/logger.js';
+import {notFound} from './src/middleware/notFound.js';
 
 const app = Express();
 app.use(Express.json());
@@ -16,6 +17,7 @@ connectDB();
 
 // Middleware
 app.use(logger);
+app.use(notFound);
 
 // Routes
 app.use('/api/lessons', lessonRoutes);
