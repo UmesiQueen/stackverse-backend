@@ -1,13 +1,14 @@
-import Express from 'express';
+import express from 'express';
 import dotenv from 'dotenv';
+import path from 'path';
 import connectDB from './src/config/db.js';
 import lessonRoutes from './src/routes/lessons.js';
 import orderRoutes from './src/routes/orders.js';
 import { logger } from './src/middleware/logger.js';
 import { notFound } from './src/middleware/notFound.js';
 
-const app = Express();
-app.use(Express.json());
+const app = express();
+app.use(express.json());
 
 dotenv.config();
 const port = process.env.PORT || 3000;
@@ -17,6 +18,7 @@ connectDB();
 
 // Middleware
 app.use(logger);
+app.use('/images', express.static(path.join(process.cwd(), './public/images')));
 
 // Routes
 app.use('/api/lessons', lessonRoutes);
