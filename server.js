@@ -22,12 +22,12 @@ app.use(logger);
 app.use('/api/lessons', lessonRoutes);
 app.use('/api/orders', orderRoutes);
 app.get('/', (req, res) => res.send(`    
-    <h1>Stackverse API</h1>
+    <h1>StackVerse API</h1>
     <h2>Available Routes</h2>
     <ul>
       <li>GET <a href="/api/lessons">/api/lessons</a> - List all lessons</li>
+      <li>PUT <a href="/api/lessons/update">/api/lessons/update</a>- Update lessons values</li>
       <li>POST <a href="/api/orders">/api/orders</a> - Create a new order</li>
-      <li>PUT <a href="/api/orders/update-availability">/api/orders/update-availability </a>- Update lesson availability after order</li>
     </ul>
   `));
 
