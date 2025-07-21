@@ -26,7 +26,7 @@ stackverse-backend/
 ### Core API Endpoints
 - `GET /api/lessons` - Get all lessons
 - `POST /api/orders` - Create new order
-- `PUT /api/orders/update-availability` - Update lesson availability after order
+- `PUT /api/lessons/update` - Update lesson attributes using either `update-fields`,`reduce-spaces` actions
 
 ### Middleware Stack
 - **Validation**: Input validation with express-validator
@@ -75,20 +75,42 @@ Content-Type: application/json
 }
 ```
 
-### Update Lesson
+### Update Lessons
 ```bash
-PUT /api/orders/update-availability
+PUT /api/lessons/update
 Content-Type: application/json
 
+// Update lesson(s) attributes
 {
-    "orderId": "6875b6577cd433cf972b2061",
-    "cartItems": [
+    "action": "update-fields",
+    "updates": [
         {
             "id": "SN01",
-            "count": 1
+            "changes": {
+                "location": "Berlin"
+            }
+        }
+        {
+            "id": "SN02",
+            "changes": {
+               ...
+            }
         }
     ]
 }
+
+// Reduce lesson(s) space based on order
+
+{
+    "action":"reduce-spaces", 
+    "orderId": "68772695b3eef2898eefcd08",
+   "cartItems": [
+         {
+             "id": "SN01",
+             "count": 2
+        }
+    ]
+ }
 ```
 
 
@@ -110,6 +132,7 @@ The custom logger outputs detailed information for each request:
 
 ## Links
 Github repo [link](https://github.com/UmesiQueen/stackverse-backend)
-Deployment url [link](https://stackverse-server.onrender.com/api/lessons)
+
+Deployment [link](https://stackverse-server.onrender.com/api/lessons)
 
 Made with ❤️ Queen
