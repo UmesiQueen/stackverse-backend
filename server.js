@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import path from 'path';
+import cors from 'cors';
 import connectDB from './src/config/db.js';
 import lessonRoutes from './src/routes/lessons.js';
 import orderRoutes from './src/routes/orders.js';
@@ -9,6 +10,7 @@ import { notFound } from './src/middleware/notFound.js';
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 dotenv.config();
 const port = process.env.PORT || 3000;
